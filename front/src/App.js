@@ -32,7 +32,10 @@ class App extends Component {
             .then((res) => {
                 if(res.ok) return res.json();
             })
-            .then((json) => console.log(json));
+            .then((getFollowers) => {
+            this.setState({
+                followers: getFollowers
+            })});
     }
 
     search(text) {
