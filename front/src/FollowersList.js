@@ -8,15 +8,15 @@ class FollowersList extends Component {
     }
 
     renderFollowers() {
-        return this.props.bandas.map((f, i) => {
-            console.log(f);
+        console.log("renderFollowers()", this.props.followers);
+        return this.props.followers.map((f, i) => {
             return <Follower follower={f} key={i}/>;
         });
     }
 
     render() {
         return(<div>
-            {(!this.props.followers.toString()=="") ? this.renderFollowers() : "Su Búsqueda no genero resultados"}
+            {(!this.props.followers.toString()=="") ? this.renderFollowers() : "Este usuario no tiene seguidores"}
         </div>);
     }
 }

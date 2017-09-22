@@ -14,7 +14,7 @@ class Usuario extends Component {
 
     render() {
         return (<div className="margin-left-right">
-            <input className="form-control input-lg centrar" type="text" placeholder="Cual usuario quieres" onEnter={this.onEnter.bind(this)}/>
+            <input className="form-control input-lg centrar" type="text" placeholder="Cual usuario quieres" onInput={this.onEnter.bind(this)}/>
         </div>)
     }
 }

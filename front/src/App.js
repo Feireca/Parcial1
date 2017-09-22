@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import Usuario from './Usuario.js'
 import FollowersList from './FollowersList.js'
+import PropTypes from "prop-types";
 
 import './App.css';
 
@@ -20,6 +21,7 @@ class App extends Component {
     }
 
     handleOpenModal () {
+        this.componentDidMount();
         this.setState({ showModal: true });
     }
 
@@ -28,19 +30,24 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch("/getFollowers/john-guerra")
+        fetch("https://api.github.com/users/"+this.state.search+"/followers")
             .then((res) => {
-                if(res.ok) return res.json();
+                if(res.ok) {
+                    return res.json();
+                }
             })
-            .then((getFollowers) => {
-            this.setState({
-                followers: getFollowers
-            })});
+            .then((followers) => {
+                this.setState({ followers: followers })
+            })
+            .catch(res => {
+                console.error("error", res);
+            })
     }
 
     search(text) {
         this.setState ({
-            search: text
+            search: text,
+            followers: []
         });
     }
 
@@ -68,4 +75,6 @@ class App extends Component {
 }
 
 export default App;
+
+
 
